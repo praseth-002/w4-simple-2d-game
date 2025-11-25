@@ -1,25 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class startButton : MonoBehaviour
+public class StartButton : MonoBehaviour
 {
-    public Button yourButton; // Reference to the button in the Inspector
+    public Button yourButton;
+    public Animator transitionAnimator; // Assign your transition prefab's Animator here
+    public float transitionTime = 1f;   // duration of the fade
 
     void Start()
     {
-        // Add a listener to the onClick event
-        Button btn = yourButton.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClick);
+        yourButton.onClick.AddListener(OnClickStart);
     }
 
-    public void TaskOnClick()
+    void OnClickStart()
     {
-        Debug.Log("You have clicked the button!"); // Your custom logic here
-        // e.g., Load a new scene using SceneManager.LoadScene(1);
-        SceneManager.LoadScene(1);
+        // Start fade-out
+        transitionAnimator.SetTrigger("End");
+
+        // Load the next scene after the fade duration
+        StartCoroutine(LoadSceneAfterFade(1));
+    }
+
+    IEnumerator LoadSceneAfterFade(int sceneIndex)
+    {
+        // Wait for the fade-out animation to finish
+        yield return new WaitForSeconds(transitionTime);
+
+        // Load scene
+        SceneManager.LoadScene(sceneIndex);
+
+        // Optional: trigger fade-in after scene loads
+        // If your transition prefab is still active across scenes
+        transitionAnimator.SetTrigger("Start");
     }
 }
