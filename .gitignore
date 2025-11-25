@@ -5,3 +5,12 @@
 [Bb]uilds/
 [Ll]ogs/
 Packages/PackageCache/
+# Visual Studio / VSCode personal files
+*.sln
+*.csproj
+*.user
+*.userprefs
+.vscode/
+
+# Unity editor personal settings
+UserSettings/
