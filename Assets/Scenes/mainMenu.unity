@@ -753,7 +753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2345419905721860052, guid: 2b21b3a849795485c9bb488e9dbfdae7, type: 3}
       propertyPath: m_Name
-      value: LevelLoader
+      value: StartGameAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 3240171745987709420, guid: 2b21b3a849795485c9bb488e9dbfdae7, type: 3}
       propertyPath: m_Color.b
